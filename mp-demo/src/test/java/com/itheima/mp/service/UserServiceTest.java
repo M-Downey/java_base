@@ -1,4 +1,4 @@
-package com.itheima.mp.mapper;
+package com.itheima.mp.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.itheima.mp.domain.po.User;
@@ -15,6 +15,9 @@ public class UserServiceTest {
     @Autowired
     private IUserService userService;
 
+    /**
+     * 测试 mp 的分页查询插件
+     */
     @Test
     void testPageQuery() {
         Page<User> page = userService.page(new Page<>(1, 2));
