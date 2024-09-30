@@ -1,8 +1,11 @@
 package com.itheima.mp.domain.vo;
 
+import com.itheima.mp.domain.vo.AddressVO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @ApiModel(description = "用户VO实体")
@@ -22,4 +25,7 @@ public class UserVO {
 
     @ApiModelProperty("账户余额")
     private Integer balance;
+
+    @ApiModelProperty("收获地址列表")
+    private List<AddressVO> addresses;
 }

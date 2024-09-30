@@ -3,9 +3,12 @@ package com.itheima.mp.service.impl;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.metadata.OrderItem;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.toolkit.Db;
 import com.itheima.mp.domain.dto.PageDTO;
+import com.itheima.mp.domain.po.Address;
 import com.itheima.mp.domain.po.User;
 import com.itheima.mp.domain.query.UserQuery;
+import com.itheima.mp.domain.vo.AddressVO;
 import com.itheima.mp.domain.vo.UserVO;
 import com.itheima.mp.mapper.UserMapper;
 import com.itheima.mp.service.IUserService;
@@ -53,5 +56,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         List<UserVO> list = BeanUtil.copyToList(records, UserVO.class);
         // 5.封装返回
         return new PageDTO<UserVO>(page.getTotal(), page.getPages(), list);
+    }
+
+    @Override
+    public UserVO queryUserAndAddressById(Long id) {
+        User user = getById(id);
+        if (user == null) {
+            return null;
+        }
+        List<Address> addresses = Db.lambdaQuery(Address.class).eq(Address::getUserId, id).list();
+        UserVO userVO = BeanUtil.copyProperties(user, UserVO.class);
+        userVO.setAddresses(BeanUtil.copyToList(addresses, AddressVO.class));
+        return userVO;
     }
 }

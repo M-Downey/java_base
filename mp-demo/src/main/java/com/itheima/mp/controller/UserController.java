@@ -37,9 +37,10 @@ public class UserController {
     @ApiOperation("根据 id 查询用户")
     @GetMapping("/{id}")
     public UserVO queryUserById(@PathVariable("id") Long id) {
-        User user = userService.getById(id);
-        UserVO userVO = BeanUtil.copyProperties(user, UserVO.class);
-        return userVO;
+//        User user = userService.getById(id);
+//        UserVO userVO = BeanUtil.copyProperties(user, UserVO.class);
+//        return userVO;
+        return userService.queryUserAndAddressById(id);
     }
 
     /**
@@ -73,4 +74,9 @@ public class UserController {
         userService.save(user);
     }
 
+    @ApiOperation("删除用户")
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable("id") Long id) {
+        userService.removeById(id);
+    }
 }

@@ -19,4 +19,6 @@ import java.util.List;
 public interface IUserService extends IService<User> {
 
     PageDTO<UserVO> pageQueryUsers(UserQuery userQuery);
+
+    UserVO queryUserAndAddressById(Long id);
 }
