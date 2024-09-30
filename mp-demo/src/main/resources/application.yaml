@@ -10,7 +10,9 @@ logging:
     com.itheima: debug
   pattern:
     dateformat: HH:mm:ss
-mybatis:
+mybatis-plus:
+  configuration:
+    default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
   mapper-locations: classpath*:mapper/*.xml
 knife4j:
   enable: true
